@@ -9,19 +9,8 @@ import socket
 import os
 
 host = "montreat.cs.unca.edu"
-#ports = [21, 22, 53, 80, 443 ]
-'''
-22 - SSH
-21 - FTP
-25 - SMTP
-53 - DNS
-80 - HTTP
-443 - HTTPS
-'''
-#todo: 0-1023
 
 def main():
-    print("hello whirled")
     ret_val = os.system("ping -c 1 -W 1 {0} > /dev/null".format(host))
     if(ret_val==0):
         print(f"ping: {format(host)} is up")
