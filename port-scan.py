@@ -1,11 +1,15 @@
 #!/user/bin/env python3
-
+'''
+Elias Landsman
+April 5, 2020
+CSCI373 Networking Lab 2
+'''
 
 import socket
 import os
 
-host = "arden.cs.unca.edu"
-ports = [21, 22, 53, 80, 443 ]
+host = "montreat.cs.unca.edu"
+#ports = [21, 22, 53, 80, 443 ]
 '''
 22 - SSH
 21 - FTP
@@ -16,17 +20,15 @@ ports = [21, 22, 53, 80, 443 ]
 '''
 #todo: 0-1023
 
-#todo: write output
-
 def main():
     print("hello whirled")
-    ret_val = os.system("ping -c 1 -w1 {0} > /dev/null".format(host))
+    ret_val = os.system("ping -c 1 -W 1 {0} > /dev/null".format(host))
     if(ret_val==0):
-        print(f"ping {format(host)} is up")
+        print(f"ping: {format(host)} is up")
     else:
         print(f"Could not ping {format(host)}")
         return
-
+    ports = range(1,1023)
     for port in ports:
         try:
             print(f"Trying to connect to {format(host)} on port {format(port)}")
@@ -39,8 +41,7 @@ def main():
         except ConnectionRefusedError as e:
             print(f"\tConnection refused on port {format(port)}: {e}")
         except OSError as e:
-            print(f"\tOSError of port {format(port)}: {e}")
+            print(f"\tOSError on port {format(port)}: {e}")
 
 if __name__=='__main__':
     main()
-
